@@ -1,0 +1,71 @@
+import React, { useState } from 'react';
+import { Link, usePage } from '@inertiajs/react';
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEnvelope, faArrowLeft, faTrash } from '@fortawesome/free-solid-svg-icons';
+
+import AdminLayout from '@/Layouts/AdminLayout';
+import { Breadcrumb } from '@/Components/Manager/Breadcrumb';
+import { ConfirmModal } from '@/Components/Manager/ConfirmModal';
+
+const Page = () => {
+    const { parceiro } = usePage().props;
+
+    const [isModalOpen, setIsModalOpen] = useState(false);
+
+    const breadcrumbItems = [
+        { label: 'Contato', link: 'Manager.Contato.index' },
+        { label: 'Parceiro', link: 'Manager.Contato.index' },
+    ];
+
+    const openModal = () => {
+        setIsModalOpen(true);
+    };
+
+    const closeModal = () => {
+        setIsModalOpen(false);
+    };
+
+    return (
+        <AdminLayout>
+            <Breadcrumb icon={faEnvelope} items={breadcrumbItems} current="Visualizar" />
+            
+            <div className="mb-6 rounded-sm border border-stroke bg-white px-5 py-5 shadow-md">
+                <div className="flex items-center justify-between">
+                    <h3 className="text-xl font-bold text-black">Visualizar Contato de Parceiro</h3>
+                </div>
+
+                <div className="mt-10">
+                    <div className="flex flex-col gap-y-2">
+                        <p><b>E-mail</b>: {parceiro.email}</p>
+                        <p><b>Telefone</b>: {parceiro.telefone}</p>
+                        <p><b>CNPJ</b>: {parceiro.cnpj}</p>
+                        {parceiro.cargo && <p><b>Cargo</b>: {parceiro.cargo}</p>}
+                        <p><b>Assunto</b>: {parceiro.assunto}</p>
+                        <p><b>Mensagem</b>: {parceiro.mensagem}</p>
+                        <p><b>Data</b>: {parceiro.data }</p>
+                    </div>
+                </div>
+
+                <div className="flex items-center justify-end">
+                    <Link href={route('Manager.Contato.index')} className="block relative w-fit rounded-lg border mr-3 border-gray-300 px-3 py-2 cursor-pointer transition-all hover:bg-slate-200">
+                        <FontAwesomeIcon icon={faArrowLeft} className="mr-2" />
+                        Voltar
+                    </Link>
+
+                    <button
+                        onClick={() => openModal(parceiro.id)}
+                        className="flex items-center w-fit rounded-lg border border-red-700 text-red-700 px-3 py-2 cursor-pointer transition-all hover:bg-red-100"
+                    >   
+                        <FontAwesomeIcon icon={faTrash} className="text-red-700 mr-2" />
+                        Excluir
+                    </button>
+                </div>
+
+                {isModalOpen && <ConfirmModal icon={faTrash} closeModal={closeModal} type="delete" confirm={route('Manager.Contato.excluir', {id: parceiro.id})} />}
+            </div>
+        </AdminLayout>
+    );
+};
+
+export default Page;

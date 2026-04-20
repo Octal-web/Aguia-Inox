@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="207" height="16" viewBox="0 0 207 16">
+  <defs>
+    <clipPath id="clip-path">
+      <rect id="Retângulo_132" data-name="Retângulo 132" width="15" height="15" transform="translate(170 10295.5)" fill="#142b3e" opacity="0.502"/>
+    </clipPath>
+  </defs>
+  <g id="Grupo_1604" data-name="Grupo 1604" transform="translate(-270 -911.5)">
+    <text id="aguiainox_aguiainox.com.br" data-name="aguiainox@aguiainox.com.br" transform="translate(294 924.5)" fill="#142b3e" font-size="13" font-family="Montserrat-Regular, Montserrat" letter-spacing="-0.02em"><tspan x="0" y="0">aguiainox@aguiainox.com.br</tspan></text>
+    <g id="Grupo_de_máscara_17" data-name="Grupo de máscara 17" transform="translate(100 -9383)" clip-path="url(#clip-path)">
+      <g id="Camada_1-2" transform="translate(170.001 10298.183)">
+        <path id="Caminho_438" data-name="Caminho 438" d="M15,1.241v7.5c0,.186-.362.8-.615.833L.77,9.625C.494,9.722,0,8.972,0,8.844v-7.6L7.5,6.8l7.134-5.454Z" fill="#142b3e"/>
+        <path id="Caminho_439" data-name="Caminho 439" d="M.414,0H14.43l.155.258L7.8,5.467l-.4.123L.511.368Z" fill="#142b3e"/>
+      </g>
+    </g>
+  </g>
+</svg>
