@@ -1,13 +1,13 @@
+import { ScrollArea } from "@/components/ui/scroll-area";
+import { Head, Link, usePage } from '@inertiajs/react';
 import { ChevronDown, Menu, X } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
-import { usePage, Link, Head } from '@inertiajs/react';
-import { ScrollArea } from "@/components/ui/scroll-area";
 
 import Lenis from 'lenis';
 
+import { CookieModal } from "./CookieModal";
 import { ProductsHeaderMenu } from "./products-header-menu";
 import { Search } from "./search";
-import { CookieModal } from "./CookieModal";
 import { Button } from "./ui/button";
 
 import { useLang } from "@/hooks/useLang";
@@ -239,7 +239,7 @@ export function Header() {
 
                         <div className="hidden items-center min-[1280px]:flex">
                             <nav>
-                                <ul className="flex items-center space-x-7 2xl:space-x-12">
+                                <ul className="flex items-center space-x-7 md:space-x-1.5 2xl:space-x-12">
                                     <li className="relative group">
                                         <div className="flex cursor-pointer items-center gap-1 2xl:gap-2">
                                             <Link
