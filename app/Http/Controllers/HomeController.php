@@ -7,7 +7,7 @@ use Inertia\Inertia;
 
 use App\Models\Slide;
 use App\Models\Segmento;
-use App\Models\Cliente; 
+use App\Models\Cliente;
 use App\Models\Post;
 
 use Carbon\Carbon;
@@ -19,7 +19,8 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index() {
+    public function index()
+    {
         $idioma = inertia()->getShared('idioma');
 
         $slides = Slide::query()
@@ -31,15 +32,15 @@ class HomeController extends Controller
                 'slidesIdiomas' => function ($q) use ($idioma) {
                     $q->whereHas('idiomas', function ($r) use ($idioma) {
                         $r->where('codigo', $idioma)
-                          ->orWhere('padrao', true);
+                            ->orWhere('padrao', true);
                     })
-                    ->orderBy('idioma_id', 'DESC');
+                        ->orderBy('idioma_id', 'DESC');
                 }
             ])
             ->orderBy('ordem', 'ASC')
             ->orderBy('id', 'DESC')
             ->get()
-            ->map(function($slide) {
+            ->map(function ($slide) {
                 return [
                     'id' => $slide->id,
                     'tipo' => $slide->tipo,
@@ -59,9 +60,9 @@ class HomeController extends Controller
                 'excluido' => NULL,
                 'case_destaque' => true
             ])
-            ->where(function($q) {
+            ->where(function ($q) {
                 $q->where('visivel', true)
-                  ->orWhere('publicado', '>=', Carbon::now());
+                    ->orWhere('publicado', '>=', Carbon::now());
             })
             ->whereHas('postCategoria', function ($q) {
                 $q->where('slug', 'nossos-cases');
@@ -70,29 +71,29 @@ class HomeController extends Controller
                 'postsIdiomas' => function ($q) use ($idioma) {
                     $q->whereHas('idiomas', function ($r) use ($idioma) {
                         $r->where('codigo', $idioma)
-                          ->orWhere('padrao', true);
+                            ->orWhere('padrao', true);
                     })
-                    ->orderBy('idioma_id', 'DESC');
+                        ->orderBy('idioma_id', 'DESC');
                 },
                 'postCategoria' => function ($q) use ($idioma) {
                     $q->where('excluido', null)
-                      ->where('visivel', true)
-                      ->with([
-                          'postsCategoriasIdiomas' => function ($qi) use ($idioma) {
-                              $qi->whereHas('idiomas', function ($ri) use ($idioma) {
-                                  $ri->where('codigo', $idioma)
-                                     ->orWhere('padrao', true);
-                              })->orderBy('idioma_id', 'DESC');
-                          }
-                      ])
-                      ->orderBy('ordem', 'ASC');
+                        ->where('visivel', true)
+                        ->with([
+                            'postsCategoriasIdiomas' => function ($qi) use ($idioma) {
+                                $qi->whereHas('idiomas', function ($ri) use ($idioma) {
+                                    $ri->where('codigo', $idioma)
+                                        ->orWhere('padrao', true);
+                                })->orderBy('idioma_id', 'DESC');
+                            }
+                        ])
+                        ->orderBy('ordem', 'ASC');
                 }
             ])
             ->orderBy('publicado', 'DESC')
             ->orderBy('ordem', 'ASC')
             ->limit(6)
             ->get()
-            ->map(function($post) {
+            ->map(function ($post) {
                 return [
                     'id' => $post->id,
                     'imagem' => rafator('content/posts/thumbs/' . $post->imagem),
@@ -103,7 +104,7 @@ class HomeController extends Controller
                     'slug' => $post->slug
                 ];
             });
-            
+
         $segmentos = Segmento::query()
             ->where([
                 'excluido' => NULL,
@@ -114,22 +115,22 @@ class HomeController extends Controller
                 'segmentosIdiomas' => function ($q) use ($idioma) {
                     $q->whereHas('idiomas', function ($r) use ($idioma) {
                         $r->where('codigo', $idioma)
-                          ->orWhere('padrao', true);
+                            ->orWhere('padrao', true);
                     })
-                    ->orderBy('idioma_id', 'DESC');
+                        ->orderBy('idioma_id', 'DESC');
                 },
                 'produtosCategorias.produtos' => function ($q) use ($idioma) {
                     $q->where([
                         'excluido' => NULL,
                         'visivel' => true
                     ])
-                    ->orderBy('ordem', 'ASC');
+                        ->orderBy('ordem', 'ASC');
                 },
             ])
             ->orderBy('ordem', 'ASC')
             ->orderBy('id', 'DESC')
             ->get()
-            ->map(function($segmento) {
+            ->map(function ($segmento) {
                 $produto = $segmento->produtosCategorias
                     ->map(fn($cat) => $cat->produtos->first())
                     ->filter()
@@ -140,11 +141,11 @@ class HomeController extends Controller
                     'banner' => rafator('content/sectors/banner/' . $segmento->banner),
                     'nome' => $segmento->segmentosIdiomas->isNotEmpty() ? $segmento->segmentosIdiomas[0]->nome : null,
                     'descricao' => $segmento->segmentosIdiomas->isNotEmpty() ? $segmento->segmentosIdiomas[0]->descricao_pagina : null,
-                    'produto_destaque' => $produto ? rafator('content/products/thumbs/s/' . $produto->imagem) : null, 
+                    'produto_destaque' => $produto ? rafator('content/products/thumbs/s/' . $produto->imagem) : null,
                     'slug' => $segmento->slug,
                 ];
             });
-            
+
         $clientes = Cliente::query()
             ->where([
                 'excluido' => NULL,
@@ -153,7 +154,7 @@ class HomeController extends Controller
             ->orderBy('ordem', 'ASC')
             ->orderBy('id', 'DESC')
             ->get()
-            ->map(function($cliente) {
+            ->map(function ($cliente) {
                 return [
                     'id' => $cliente->id,
                     'logo' => rafator('content/brands/thumbs/' . $cliente->logo),
@@ -166,9 +167,9 @@ class HomeController extends Controller
             ->where([
                 'excluido' => NULL,
             ])
-            ->where(function($q) {
+            ->where(function ($q) {
                 $q->where('visivel', true)
-                  ->orWhere('publicado', '>=', Carbon::now());
+                    ->orWhere('publicado', '>=', Carbon::now());
             })
             ->whereHas('postCategoria', function ($q) {
                 $q->where('slug', '!=', 'nossos-cases');
@@ -177,38 +178,38 @@ class HomeController extends Controller
                 'postsIdiomas' => function ($q) use ($idioma) {
                     $q->whereHas('idiomas', function ($r) use ($idioma) {
                         $r->where('codigo', $idioma)
-                          ->orWhere('padrao', true);
+                            ->orWhere('padrao', true);
                     })
-                    ->orderBy('idioma_id', 'DESC');
+                        ->orderBy('idioma_id', 'DESC');
                 },
                 'postCategoria' => function ($q) use ($idioma) {
                     $q->where([
                         'excluido' => NULL,
                         'visivel' => true
                     ])
-                    ->with([
-                        'postsCategoriasIdiomas' => function ($qi) use ($idioma) {
-                            $qi->whereHas('idiomas', function ($ri) use ($idioma) {
-                                $ri->where('codigo', $idioma)
-                                   ->orWhere('padrao', true);
-                            })->orderBy('idioma_id', 'DESC');
-                        }
-                    ])
-                  ->orderBy('ordem', 'ASC');
+                        ->with([
+                            'postsCategoriasIdiomas' => function ($qi) use ($idioma) {
+                                $qi->whereHas('idiomas', function ($ri) use ($idioma) {
+                                    $ri->where('codigo', $idioma)
+                                        ->orWhere('padrao', true);
+                                })->orderBy('idioma_id', 'DESC');
+                            }
+                        ])
+                        ->orderBy('ordem', 'ASC');
                 }
             ])
             ->orderBy('publicado', 'DESC')
             ->orderBy('ordem', 'ASC')
             ->limit(6)
             ->get()
-            ->map(function($post) {
+            ->map(function ($post) {
                 return [
                     'id' => $post->id,
                     'imagem' => rafator('content/posts/thumbs/' . $post->imagem),
                     'titulo' => $post->postsIdiomas->isNotEmpty() ? $post->postsIdiomas[0]->titulo : null,
                     'previa' => $post->postsIdiomas->isNotEmpty() ? $post->postsIdiomas[0]->previa : null,
-                    'categoria' => $post->postCategoria->postsCategoriasIdiomas->isNotEmpty() ? $post->postCategoria->postsCategoriasIdiomas[0]->nome : null,
-                    'categoria_slug' => $post->postCategoria->slug,
+                    'categoria' => $post->postCategoria->postsCategoriasIdiomas[0]->nome ?? null,
+                    'categoria_slug' => $post->postCategoria->slug ?? null,
                     'slug' => $post->slug
                 ];
             });
