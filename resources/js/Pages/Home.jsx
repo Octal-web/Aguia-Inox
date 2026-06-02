@@ -155,7 +155,7 @@ export default function Home() {
 
                 <section className="overflow-hidden pb-0 xl:pb-24 2xl:pb-0">
                     <div className="container max-w-large">
-                        <div className="lg:flex lg:h-[500px] w-full justify-between max-[1025px]:h-fit max-[1025px]:flex-col max-[1025px]:gap-10">
+                        <div className="lg:flex w-full justify-between max-[1025px]:h-fit max-[1025px]:flex-col max-[1025px]:gap-10">
                             <Reveal direction="left" className="relative max-[601px]:px-6 max-[601px]:text-justify w-full lg:max-w-[37%] z-[2]">
                                 <div className="hidden lg:block absolute w-[50vw] right-0 top-0 -bottom-[246px] bg-bottom -z-[1]" style={{
                                     backgroundImage: 'url("/site/img/pattern-bg.jpg")',

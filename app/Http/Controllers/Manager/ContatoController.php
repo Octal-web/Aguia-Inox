@@ -110,7 +110,6 @@ class ContatoController extends Controller
         $contato = Contato::query()
             ->where([
                 'excluido' => NULL,
-                'id' => $id
             ])
             ->with([
                 'departamento' => function ($q) use ($idioma) {

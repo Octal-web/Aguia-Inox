@@ -23,7 +23,7 @@ const Page = () => {
     const inputItems = [
         [{ titulo: 'Nome', name: 'nome', tamanho: 'col-span-12 md:col-span-6 lg:col-span-4', tipo: 'texto', max: 120 }, { titulo: 'Opcional', name: 'opcional_id', tamanho: 'col-span-12 md:col-span-6 lg:col-span-4', tipo: 'select', options: opcionais }],
         [{ titulo: 'Descrição', name: 'descricao', tamanho: 'col-span-12 lg:col-span-8', tipo: 'texto_longo', editor: false, max: 1080 }],
-        [{ titulo: 'Imagem', name: 'img', tamanho: 'col-span-12 lg:col-span-7', tipo: 'imagem', crop: true, largura: 600, altura: 780, imagem: opcional_modelo.imagem }]
+        [{ titulo: 'Imagem', name: 'img', tamanho: 'col-span-12 lg:col-span-7', tipo: 'imagem', crop: true, largura: 300, altura: 300, imagem: opcional_modelo.imagem }]
     ];
 
     const handleSubmit = (e) => {

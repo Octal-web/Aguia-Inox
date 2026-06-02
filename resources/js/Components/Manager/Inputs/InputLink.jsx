@@ -26,7 +26,7 @@ export const InputLink = ({ title, name, value, idioma, onChange, onCheck, max, 
                         type="text"
                         name={name}
                         value={value}
-                        className="w-full rounded-r-lg border-gray-300 bg-transparent p-3 font-normal text-sm text-black outline-none transition focus:border-secondary focus:ring-0 active:border-secondary disabled:cursor-default disabled:bg-whiter"
+                        className="w-full rounded-r-lg border border-gray-300 bg-transparent p-3 font-normal text-sm text-black outline-none transition focus:border-secondary focus:ring-0 active:border-secondary disabled:cursor-default disabled:bg-whiter"
                         onChange={handleChange}
                         maxLength={max ? max : null}
                     />

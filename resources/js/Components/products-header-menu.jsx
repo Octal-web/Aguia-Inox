@@ -81,7 +81,7 @@ export function ProductsHeaderMenu({ isOpen, setIsOpen }) {
                                 </Link>
                             )) || (
                                 <span className="text-secondary/50 font-sora text-sm italic">
-                                    {lang('categoriaNaoEncontrada')}
+                                    Nenhuma categoria disponível
                                 </span>
                             )}
                         </div>
@@ -96,7 +96,7 @@ export function ProductsHeaderMenu({ isOpen, setIsOpen }) {
                             <div className="flex items-center gap-3">
                                 <img src="/site/img/icon-segmento.png" alt="Ícone segmento" />
                                 <h3 className="font-sora text-xl font-medium tracking-tight text-primary">
-                                    {lang('sobreEsseSegmento')}:
+                                    Sobre esse segmento:
                                 </h3>
                             </div>
                             <div className="mt-6 max-w-[358px] text-[14px] tracking-tight text-secondary">

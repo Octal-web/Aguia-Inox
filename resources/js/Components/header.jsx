@@ -1,13 +1,15 @@
-import { ScrollArea } from "@/components/ui/scroll-area";
-import { Head, Link, usePage } from '@inertiajs/react';
 import { ChevronDown, Menu, X } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
+import { usePage, Link, Head } from '@inertiajs/react';
+import { ScrollArea } from "@/components/ui/scroll-area";
 
 import Lenis from 'lenis';
 
-import { CookieModal } from "./CookieModal";
 import { ProductsHeaderMenu } from "./products-header-menu";
 import { Search } from "./search";
+import { CookieModal } from "./CookieModal";
+import { LanguageSwitcher } from '../Components/LanguageSwitcher';
+
 import { Button } from "./ui/button";
 
 import { useLang } from "@/hooks/useLang";
@@ -239,9 +241,9 @@ export function Header() {
 
                         <div className="hidden items-center min-[1280px]:flex">
                             <nav>
-                                <ul className="flex items-center space-x-7 md:space-x-1.5 2xl:space-x-12">
+                                <ul className="flex items-center space-x-4 2xl:space-x-10">
                                     <li className="relative group">
-                                        <div className="flex cursor-pointer items-center gap-1 2xl:gap-2">
+                                        <div className="flex cursor-pointer items-center gap-1 xl:gap-0 2xl:gap-2">
                                             <Link
                                                 href={route('Institucional.index')}
                                                 className="relative font-sora font-normal text-secondary text-opacity-0 capitalize after:content-[attr(data-after)] after:absolute after:left-1/2 after:-translate-x-1/2 after:text-secondary after:text-opacity-100 group-hover:after:font-bold after:whitespace-nowrap after:transition-all"
@@ -296,10 +298,10 @@ export function Header() {
                                     <li ref={productsMenuRef}>
                                         <button
                                             onClick={toggleProductsMenu}
-                                            className="group flex cursor-pointer items-center gap-1 2xl:gap-2 font-sora text-secondary transition-all"
+                                            className="group flex cursor-pointer items-center gap-1 xl:gap-0 2xl:gap-2 font-sora text-secondary transition-all"
                                         >
                                             <span
-                                                className="relative font-sora font-normal text-secondary text-opacity-0 capitalize after:content-[attr(data-after)] after:absolute after:left-1/2 after:-translate-x-1/2 after:text-secondary after:text-opacity-100 group-hover:after:font-bold after:whitespace-nowrap after:transition-all"
+                                                className="relative font-sora font-normal text-secondary text-opacity-0 xl:tracking-tight 2xl:tracking-normal capitalize after:content-[attr(data-after)] after:absolute after:left-1/2 after:-translate-x-1/2 after:text-secondary after:text-opacity-100 group-hover:after:font-bold after:whitespace-nowrap after:transition-all"
                                                 data-after={lang('produtos')}
                                             >
                                                 {lang('produtos')}
@@ -315,7 +317,7 @@ export function Header() {
                                         <div className="flex cursor-pointer items-center gap-1 2xl:gap-2">
                                             <Link
                                                 href={route('News.index')}
-                                                className="relative font-sora font-normal text-secondary text-opacity-0 capitalize after:content-[attr(data-after)] after:absolute after:left-1/2 after:-translate-x-1/2 after:text-secondary after:text-opacity-100 group-hover:after:font-bold after:whitespace-nowrap after:transition-all"
+                                                className="relative font-sora font-normal text-secondary text-opacity-0 xl:tracking-tight 2xl:tracking-normal capitalize after:content-[attr(data-after)] after:absolute after:left-1/2 after:-translate-x-1/2 after:text-secondary after:text-opacity-100 group-hover:after:font-bold after:whitespace-nowrap after:transition-all"
                                                 data-after={lang('news')}
                                             >
                                                 {lang('news')}
@@ -345,7 +347,7 @@ export function Header() {
                                     <li className="relative group">
                                         <Link
                                             href={route('Contato.index')}
-                                            className="font-sora font-normal text-secondary text-opacity-0 capitalize after:content-[attr(data-after)] after:absolute after:left-1/2 after:-translate-x-1/2 after:text-secondary after:text-opacity-100 group-hover:after:font-bold after:whitespace-nowrap after:transition-all"
+                                            className="font-sora font-normal text-secondary text-opacity-0 xl:tracking-tight 2xl:tracking-normal capitalize after:content-[attr(data-after)] after:absolute after:left-1/2 after:-translate-x-1/2 after:text-secondary after:text-opacity-100 group-hover:after:font-bold after:whitespace-nowrap after:transition-all"
                                             data-after={lang('contato')}
                                         >
                                             {lang('contato')}
@@ -354,7 +356,7 @@ export function Header() {
                                     <li className="relative group">
                                         <Link
                                             href={route('TrabalheConosco.index')}
-                                            className="font-sora font-normal text-secondary text-opacity-0 capitalize after:content-[attr(data-after)] after:absolute after:left-1/2 after:-translate-x-1/2 after:text-secondary after:text-opacity-100 group-hover:after:font-bold after:whitespace-nowrap after:transition-all"
+                                            className="font-sora font-normal text-secondary text-opacity-0 xl:tracking-tight 2xl:tracking-normal  after:content-[attr(data-after)] after:absolute after:left-1/2 after:-translate-x-1/2 after:text-secondary after:text-opacity-100 group-hover:after:font-bold after:whitespace-nowrap after:transition-all"
                                             data-after={lang('trabalheConosco')}
                                         >
                                             {lang('trabalheConosco')}
@@ -366,7 +368,7 @@ export function Header() {
                             <div ref={searchDesktopRef}>
                                 <button
                                     ref={searchToggleDesktopRef}
-                                    className="ml-10 2xl:ml-14 cursor-pointer"
+                                    className="ml-6 2xl:ml-14 cursor-pointer"
                                     onClick={toggleSearch}
                                 >
                                     <img src="/site/img/icon-search.png" alt="Pesquisar" />
@@ -374,7 +376,7 @@ export function Header() {
                                 {isSearchOpen && <Search />}
                             </div>
 
-                            <div className="ml-6 2xl:ml-8 flex items-center gap-4 2xl:gap-6">
+                            <div className="ml-4 2xl:ml-6 flex items-center gap-3 2xl:gap-4">
                                 <Link
                                     aria-label={lang('soliciteOrcamento')}
                                     href={route('Home.index') + '#parceria'}
@@ -398,6 +400,8 @@ export function Header() {
                                     </svg>
                                 </a>
                             </div>
+                            
+                            <LanguageSwitcher />
                         </div>
 
                         <div className="flex items-center gap-5 min-[1280px]:hidden">
@@ -427,7 +431,7 @@ export function Header() {
                 </div>
 
                 <div 
-                    className={`overflow-hidden border-t border-gray-200 bg-white shadow-lg transition-all duration-300 ease-in-out min-[1280px]:hidden ${
+                    className={`overflow-hidden border-t border-gray-200 bg-white shadow-lg transition-all duration-300 ease-in-out min-[1235px]:hidden ${
                         isMobileMenuOpen 
                             ? 'max-h-[600px] opacity-100' 
                             : 'max-h-0 opacity-0 border-t-0'
@@ -538,17 +542,10 @@ export function Header() {
                             </ul>
                         </nav>
 
-                        <div className={`flex items-center gap-4 pb-4 transition-all duration-300 delay-300 ${
+                        <div className={`flex items-center pb-4 transition-all duration-300 delay-300 ${
                             isMobileMenuOpen ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
                         }`}>
-                            <Button
-                                className="h-[54px] w-full"
-                                variant={"default"}
-                            >
-                                {lang('soliciteOrcamento')}
-                            </Button>
-
-                            <div className="flex justify-center">
+                            <div className="flex justify-center mr-4">
                                 <a href={`https://wa.me/${dadosGerais.whatsapp_mkt.replace(/\D/g, '')}`} target="_blank" rel="noopener noreferrer">
                                     <img
                                         src="/site/img/whats-button.svg"
@@ -558,6 +555,15 @@ export function Header() {
                                     />
                                 </a>
                             </div>
+
+                            <Button
+                                className="h-[50px] w-full"
+                                variant={"default"}
+                            >
+                                {lang('soliciteOrcamento')}
+                            </Button>
+                            
+                            <LanguageSwitcher />
                         </div>
                     </div>
                 </div>

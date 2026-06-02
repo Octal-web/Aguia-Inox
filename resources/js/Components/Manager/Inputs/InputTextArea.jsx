@@ -16,7 +16,7 @@ export const InputTextArea = ({ title, name, value, idioma, onChange, max }) => 
                 type="text"
                 name={name}
                 value={value}
-                className="block w-full rounded-lg border-gray-300 bg-transparent p-3 font-normal text-sm text-black outline-none transition focus:border-secondary focus:ring-0 active:border-secondary disabled:cursor-default disabled:bg-whiter"
+                className="block w-full rounded-lg border border-gray-300 bg-transparent p-3 font-normal text-sm text-black outline-none transition focus:border-secondary focus:ring-0 active:border-secondary disabled:cursor-default disabled:bg-whiter"
                 onChange={handleChange}
                 {...(max ? { maxLength: max } : {})}
                 rows="5"

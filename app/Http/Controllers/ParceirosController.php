@@ -32,6 +32,6 @@ class ParceirosController extends Controller
             ]);
         }
 
-        return Inertia::location(route('Home.index'));
+        // return Inertia::location(route('Home.index'));
     }
 };

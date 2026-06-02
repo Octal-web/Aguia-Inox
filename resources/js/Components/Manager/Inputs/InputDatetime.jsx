@@ -16,7 +16,7 @@ export const InputDatetime = ({ title, name, value, idioma, onChange, max }) => 
                 type="datetime-local"
                 name={name}
                 value={value}
-                className="w-full rounded-lg border-gray-300 bg-transparent p-3 font-normal text-sm text-black outline-none transition focus:border-primary focus:ring-0 active:border-primary disabled:cursor-default disabled:bg-whiter"
+                className="w-full rounded-lg border border-gray-300 bg-transparent p-3 font-normal text-sm text-black outline-none transition focus:border-primary focus:ring-0 active:border-primary disabled:cursor-default disabled:bg-whiter"
                 onChange={handleChange}
                 max={max || undefined}
             />

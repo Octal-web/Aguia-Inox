@@ -13,6 +13,7 @@ use App\Models\Segmento;
 use App\Models\PostCategoria;
 
 use Illuminate\Support\Str;
+use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 abstract class Controller
 {
@@ -135,7 +136,11 @@ abstract class Controller
             $idiomas = Idioma::query()
                 ->orderBy('padrao', 'DESC')
                 ->orderBy('id', 'DESC')
-                ->get();
+                ->get()
+                ->map(function ($idioma) {
+                    $idioma->url = LaravelLocalization::getLocalizedURL($idioma->codigo, null, [], true);
+                    return $idioma;
+                });
     
             $idioma = App::getLocale();
 

@@ -181,7 +181,7 @@ export default function Index() {
                                 className="h-14 text-lg"
                                 onClick={handleCategoriesAll}
                             >
-                                {allCategories ? lang('recolher') : lang('expandir')}
+                                {allCategories ? "Recolher" : "Ver Mais Categorias +"}
                             </Button>
                         )}
                     </div>

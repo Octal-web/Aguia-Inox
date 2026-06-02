@@ -1,15 +1,12 @@
 import { Footer } from "@/components/footer";
 import { Header } from "@/components/header";
 import { Button } from "@/components/ui/button";
-import { useLang } from "@/hooks/useLang";
 import { Head, Link, usePage } from "@inertiajs/react";
 import { useEffect } from "react";
 
 export default function Show() {
 
     const { produto, outrosProdutos } = usePage().props;
-
-    const lang = useLang();
 
     useEffect(() => {
         const hash = window.location.hash;
@@ -63,7 +60,7 @@ export default function Show() {
                     <Button
                         className="translate-y-1 rounded-none border-b-8 border-transparent! bg-transparent p-10 font-sora text-4xl font-light text-primary shadow-none transition-all hover:bg-transparent hover:text-primary max-[601px]:text-2xl border-primary font-bold"
                     >
-                        {lang('opcionais')}
+                        Opcionais
                     </Button>
                 </div>
 
@@ -86,13 +83,13 @@ export default function Show() {
             <div className="mx-auto mt-32 w-full max-w-[1660px] px-10">
                 <div className="flex w-full items-end justify-between max-[601px]:flex-col max-[601px]:items-center max-[601px]:gap-3">
                     <h3 className="font-sora text-5xl font-medium tracking-tight text-primary max-[601px]:text-3xl">
-                        {lang('vejaTambem')}
+                        Veja também
                     </h3>
                     <Link
                         href="/produtos"
                         className="font-sora text-lg tracking-tight text-secondary underline"
                     >
-                        {lang('voltarProdutos')}
+                        Voltar a página de produtos
                     </Link>
                 </div>
 
@@ -115,7 +112,7 @@ export default function Show() {
                                     className="font-sora text-xl font-medium text-primary underline"
                                 >
                                     <Button className="mt-4 h-[46px] w-full max-w-[225px] border-2 border-primary bg-transparent text-primary hover:bg-primary hover:text-white">
-                                        {lang('conhecerProduto')}
+                                        Conhecer Produto
                                     </Button>
                                 </Link>
                             </div>

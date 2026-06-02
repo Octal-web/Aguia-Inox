@@ -17,7 +17,7 @@ class Opcional extends Model {
     }
 
     public function categoria() {
-        return $this->belongsTo(OpcionalCategoria::class);
+        return $this->belongsTo(OpcionalCategoria::class, 'opcional_categoria_id');
     }
 
     public function produtos()

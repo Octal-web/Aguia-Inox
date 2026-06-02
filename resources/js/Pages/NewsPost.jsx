@@ -1,13 +1,11 @@
 import { Footer } from "@/components/footer";
 import { Header } from "@/components/header";
 import { Separator } from "@/components/ui/separator";
-import { useLang } from "@/hooks/useLang";
 import { Link, usePage } from "@inertiajs/react";
 
 export default function Show() {
     const { post, posts } = usePage().props;
 console.log(post)
-    const lang = useLang(); 
     return (
         <>
             <Header />
@@ -59,7 +57,7 @@ console.log(post)
 
                 <div className="mt-10 flex items-center gap-5 max-[601px]:flex-col max-[601px]:text-justify">
                     <p className="font-sora md:text-2xl font-medium tracking-tight text-primary">
-                        {lang('compartilhe')}:
+                        Compartilhe esse conteúdo em suas redes sociais:
                     </p>
                     <div className="flex items-center gap-1">
                         <a
@@ -82,7 +80,7 @@ console.log(post)
 
             <div className="mx-auto -mt-64 w-full max-w-[1560px] px-10 max-[1367px]:px-10">
                 <h3 className="font-sora text-5xl font-medium tracking-tight text-primary max-[601px]:text-justify max-[601px]:text-3xl">
-                    {lang('vejaTambem')}
+                    Veja também
                 </h3>
 
                 <div className="mt-14 grid grid-cols-3 gap-9 max-[769px]:grid-cols-1">
@@ -122,7 +120,7 @@ console.log(post)
                                 href={route('News.post', { categoria: item.categoria_slug, slug: item.slug})}
                                 className="mt-auto font-sora font-medium text-primary underline transition-all hover:opacity-70"
                             >
-                                {lang('continuarLendo')}
+                                Continuar lendo
                             </Link>
                         </article>
                     ))}

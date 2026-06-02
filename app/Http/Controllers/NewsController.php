@@ -253,7 +253,7 @@ class NewsController extends Controller
      * @param  string  $slug
      * @return \Illuminate\Http\Response
      */
-    public function post($categoria, $slug) {
+    public function post(?string $categoria = null, ?string $slug = null) {
         if (!$categoria || !$slug) {
             return Inertia::location(route('News.index'));
         }

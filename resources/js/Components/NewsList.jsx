@@ -2,10 +2,8 @@ import React, { useEffect, useRef } from 'react';
 import { Link } from '@inertiajs/react';
 
 import PostsPagination from './PostsPagination';
-import { useLang } from '@/hooks/useLang';
 
 export const NewsList = ({ posts, loading, links, totalPages, onPageChange }) => {
-    const lang = useLang();
     return (
         <section className="pt-24" id="posts">
             <div className="container max-w-large">
@@ -42,13 +40,13 @@ export const NewsList = ({ posts, loading, links, totalPages, onPageChange }) =>
                                     href={route('News.post', { categoria: item.categoria_slug, slug: item.slug})}
                                     className="mt-auto font-sora font-medium text-primary underline transition-all hover:opacity-70"
                                 >
-                                    {lang('continuarLendo')}
+                                    Continuar lendo
                                 </Link>
                             </article>
                         ))}
                     </div>
                 ) : (
-                    <h3 className="font-eng-secondary text-3xl text-center my-20">{lang('filtrosNaoEncontrados')}</h3>
+                    <h3 className="font-eng-secondary text-3xl text-center my-20">Não foram encontradas postagens com o filtro selecionado</h3>
                 )}
             </div>
 

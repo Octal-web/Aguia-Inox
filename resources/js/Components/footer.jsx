@@ -56,7 +56,7 @@ export function Footer({ margin = true }) {
                         />
                         <div className="pt-4">
                             <span className="font-sora font-medium text-primary capitalize">
-                                {lang('empresa')}
+                                Empresa
                             </span>
                             <ul className="mt-4 [1025px]space-y-1 max-[1025px]:flex max-[1025px]:flex-wrap max-[1025px]:justify-around max-[1025px]:space-x-1">
                                 <li>
@@ -145,6 +145,15 @@ export function Footer({ margin = true }) {
                             >
                                 {lang('trabalheConosco')}
                             </Link>
+                            <a
+                                href="https://portalrh.aguiainox.com.br/portalrh/Account/Login"
+                                aria-label={lang('politicaCanalDenuncia')}
+                                className="font-sora font-medium text-primary"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            >
+                                {lang('canalDenuncias')}
+                            </a>
                         </div>
                         <Separator
                             orientation="vertical"
@@ -232,11 +241,27 @@ export function Footer({ margin = true }) {
                         </p>
                         <div className="flex items-center gap-1 font-sora text-sm font-light  max-[1025px]:flex-col max-[1025px]:gap-6">
                             <a
-                                href="/politica-de-privacidade"
+                                href={route('Politicas.privacidade')}
                                 aria-label={lang('politicaPrivacidade')}
-                                className="relative before:mr-1 before:ml-1 before:text-[#B9B9B988] text-[#B9B9B988] before:content-['|'] hover:text-[#B9B9B9] transition-all duration-500 first:before:content-none max-[1025px]:before:content-none"
+                                className="relative text-[#B9B9B988] hover:text-[#B9B9B9] transition-all duration-500"
                             >
                                 {lang('politicaPrivacidade')}
+                            </a>
+                            <span className="text-[#B9B9B988]">|</span>
+                            <a
+                                href={route('Politicas.cookies')}
+                                aria-label={lang('politicaCookies')}
+                                className="relative text-[#B9B9B988] hover:text-[#B9B9B9] transition-all duration-500"
+                            >
+                                {lang('politicaCookies')}
+                            </a>
+                            <span className="text-[#B9B9B988]">|</span>
+                            <a
+                                href={route('Politicas.canalDenuncia')}
+                                aria-label={lang('politicaCanalDenuncia')}
+                                className="relative text-[#B9B9B988] hover:text-[#B9B9B9] transition-all duration-500"
+                            >
+                                {lang('politicaCanalDenuncia')}
                             </a>
                         </div>
                         <div className="flex items-center gap-2 max-[1025px]:flex-col">

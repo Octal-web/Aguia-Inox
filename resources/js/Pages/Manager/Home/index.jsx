@@ -56,9 +56,6 @@ const Page = () => {
             <FormContent content={conteudos[1]} full={true} idioma={idioma.codigo} />
             
             <FormContent content={conteudos[2]} full={true} idioma={idioma.codigo} />
-            
-            <FormContent content={conteudos[3]} full={true} idioma={idioma.codigo} />
-
         </AdminLayout>
     );
 };

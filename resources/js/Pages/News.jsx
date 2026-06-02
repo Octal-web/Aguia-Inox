@@ -40,6 +40,11 @@ export default function Index() {
             onSuccess: (page) => {
                 setPosts(page.props.posts);
                 setLoading(false);
+
+                const postsSection = document.getElementById('posts');
+                if (postsSection) {
+                    postsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
             }
         });
     };
@@ -51,7 +56,7 @@ export default function Index() {
         const currentParams = new URLSearchParams(window.location.search);
 
         currentParams.delete('page');
-console.log(category)
+        
         if (category === null) {
             currentParams.delete('categoria');
             setSelectedCategory(null);
@@ -70,6 +75,11 @@ console.log(category)
             onSuccess: (page) => {
                 setPosts(page.props.posts);
                 setLoading(false);
+
+                const postsSection = document.getElementById('posts');
+                if (postsSection) {
+                    postsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
             }
         });
     };

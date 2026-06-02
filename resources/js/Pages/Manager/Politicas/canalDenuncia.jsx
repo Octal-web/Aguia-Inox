@@ -19,7 +19,7 @@ const Page = () => {
 
     return (
         <AdminLayout>
-            <Breadcrumb icon={faFileText} items={breadcrumbItems} current="Privacidade" idioma={idioma.codigo} idiomas={idiomas} />
+            <Breadcrumb icon={faFileText} items={breadcrumbItems} current="Canal de Denúncia" idioma={idioma.codigo} idiomas={idiomas} />
             <PageSettings page={pagina} idioma={idioma.codigo} />
 
             <FormContent content={conteudos[0]} full={true} toolbar={['List']} idioma={idioma.codigo} />

@@ -61,14 +61,14 @@ export default function Index() {
                                             className="block mt-4"
                                         >
                                             <Button className="mt-auto h-[46px] w-full max-w-[252px] max-[601px]:max-w-full border-2 border-primary bg-transparent text-md text-primary font-semibold hover:bg-primary hover:text-white">
-                                                {lang('conhecerProduto')}
+                                                Conhecer Produto
                                             </Button>
                                         </Link>
                                     </div>
                                 </article>
                             ))
                         ) : (
-                            <h3 className="text-primary text-3xl text-center my-20 col-span-4 max-[1441px]:col-span-3 max-[1025px]:col-span-2">{lang('filtrosNaoEncontrados')}</h3>
+                            <h3 className="text-primary text-3xl text-center my-20 col-span-4 max-[1441px]:col-span-3 max-[1025px]:col-span-2">Não foram encontradas postagens com o filtro selecionado</h3>
                         )}
                     </div>
 

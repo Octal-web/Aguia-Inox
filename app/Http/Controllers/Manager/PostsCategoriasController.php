@@ -211,7 +211,7 @@ class PostsCategoriasController extends Controller
             }
         }
 
-        return to_route('Manager.News.index')->with('error', ['type' => 'success', 'msg' => 'Não foi possível salvar as informações. Tente novamente mais tarde.']);
+        return to_route('Manager.News.index')->with('message', ['type' => 'error', 'msg' => 'Não foi possível salvar as informações. Tente novamente mais tarde.']);
     }
 
     /**

@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 import { cn } from "@/lib/utils";
 import { useForm } from "@inertiajs/react";
@@ -21,16 +21,24 @@ import { useLang } from "@/hooks/useLang";
 export function PartnerForm() {
     const [phoneMask, setPhoneMask] = useState("(__) ____-____");
     const [showSuccess, setShowSuccess] = useState(false);
+    const [termsVisible, setTermsVisible] = useState(false);
     const [fadeOut, setFadeOut] = useState(false);
 
     const lang = useLang();
     
+    const urlParams = new URLSearchParams(window.location.search);
+
     const { data, setData, post, processing, errors, reset, wasSuccessful } = useForm({
         nome: '',
         email: '',
         cnpj: '',
         telefone: '',
         cargo: '',
+        origem: urlParams.get('utm_source') || '',
+        campanha: urlParams.get('utm_campaign') || '',
+        grupo: urlParams.get('utm_group') || '',
+        anuncio: urlParams.get('utm_content') || '',
+        posicao_formulario: 'Formulário de Parceria - Rodapé',
         // assunto: '',
         mensagem: '',
         politica: false,
@@ -75,6 +83,8 @@ export function PartnerForm() {
             },
         });
     };
+
+    const termsRef = useRef(null);
 
     useEffect(() => {
         const hash = window.location.hash;
@@ -251,6 +261,13 @@ export function PartnerForm() {
                         </div>
                     </div>
 
+                    <div ref={termsRef} className={`bg-gray-100 text-xs sm:text-sm leading-tight text-black ${termsVisible ? 'mb-3' : 'mb-0'} overflow-hidden transition-all duration-300`} style={{ maxHeight: termsVisible ? `${termsRef.current?.scrollHeight}px` : '0px' }}>
+                        <div className="py-4 px-5">
+                            <p>Os dados pessoais informados neste formulário serão utilizados pela Águia Inox para atender sua solicitação, realizar contato e dar seguimento a eventual relacionamento comercial, com base nas hipóteses legais previstas na legislação aplicável.</p>
+                            <p>Para mais informações sobre o tratamento de dados pessoais, bases legais e seus direitos como titular, acesse nossa <a href={route('Politicas.privacidade')} target="_blank" className="font-bold underline">{lang('politicaPrivacidade')}</a>.</p>
+                        </div>
+                    </div>
+
                     <div className="flex w-full items-center justify-center gap-2">
                         <Checkbox
                             className="h-[30px] w-[30px] rounded-[10px] border-2 border-primary"
@@ -263,7 +280,16 @@ export function PartnerForm() {
                             className="font-sora font-light text-textblack max-sm:leading-tight"
                         >
                             {lang('aceito')}{" "}
-                            <a href={route('Politicas.privacidade')} target="_blank" className="font-bold underline lowercase">
+                            <span
+                                onClick={(e) => {
+                                    e.preventDefault();
+                                    setTermsVisible(!termsVisible);
+                                }}
+                                className="font-bold cursor-pointer underline"
+                            >
+                                {lang('termosUso')}
+                            </span> {lang('ea')}
+                            <a href={route('Politicas.privacidade')} target="_blank" className="font-bold underline">
                                 {lang('politicaPrivacidade')}
                             </a>{" "}
                             {lang('siteAguiaInox')}

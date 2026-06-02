@@ -21,7 +21,6 @@ class ParceriasController extends Controller
         $parceiro = Parceiro::query()
             ->where([
                 'excluido' => NULL,
-                'id' => $id
             ])
             ->first();
 

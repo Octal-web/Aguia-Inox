@@ -345,7 +345,7 @@ class OpcionaisModelosController extends Controller
             }
         }
 
-        return to_route('Manager.Opcionais.Modelos.index', ['id' => $opcional_modelo->opcional_id])->with('error', ['type' => 'success', 'msg' => 'Não foi possível salvar as informações. Tente novamente mais tarde.']);
+        return to_route('Manager.Opcionais.Modelos.index', ['id' => $opcional_modelo->opcional_id])->with('message', ['type' => 'error', 'msg' => 'Não foi possível salvar as informações. Tente novamente mais tarde.']);
     }
 
     /**

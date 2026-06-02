@@ -63,7 +63,7 @@ export const OptionalAccordion = ({ title, slug, items }) => {
                                 className="flex items-center gap-5 py-1.5 before:w-3 before:h-3 before:inline-block before:bg-primary before:relative before:rounded-full"
                             >
                                 <Link
-                                    href={route('Opcionais.opcional', {categoria: slug, slug: item.slug})}
+                                    href={`${route('Opcionais.opcional', { categoria: slug })}#${item.slug}`}
                                     className="font-sora font-medium text-secondary transition-all hover:opacity-80 cursor-pointer"
                                 >
                                     {item.titulo}
