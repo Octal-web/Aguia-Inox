@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="129" height="16" viewBox="0 0 129 16">
+  <defs>
+    <clipPath id="clip-path">
+      <rect id="Retângulo_133" data-name="Retângulo 133" width="15" height="15" transform="translate(170 10332.5)" fill="#142b3e" opacity="0.502"/>
+    </clipPath>
+  </defs>
+  <g id="Grupo_1603" data-name="Grupo 1603" transform="translate(-270 -961.5)">
+    <text id="_55_54_3464-0191" data-name="+55 54 3464-0191" transform="translate(294 974.5)" fill="#142b3e" font-size="13" font-family="Montserrat-Regular, Montserrat" letter-spacing="-0.02em"><tspan x="0" y="0">+55 54 3464-0191</tspan></text>
+    <g id="Grupo_de_máscara_16" data-name="Grupo de máscara 16" transform="translate(100 -9370)" clip-path="url(#clip-path)">
+      <g id="Camada_1-2" transform="translate(170 10332.503)">
+        <path id="Caminho_437" data-name="Caminho 437" d="M4.689,5.436c-.038.049-.191.041-.206.134-.147.875,1.6,2.783,2.24,3.374.4.365,2.087,1.682,2.542,1.634.628-.067.953-1.446,2.037-1.231.889.614,2.7,1.247,3.427,1.952a.86.86,0,0,1,.1,1.142,15.963,15.963,0,0,1-2.575,2.414c-1.2.512-3.6-.518-4.7-1.116C4.539,12.108.008,7.246,0,3.631,0,2.4.828,2.064,1.551,1.336,2.071.811,2.914-.641,3.7.322A35.361,35.361,0,0,1,5.483,3.658c.21.979-.274,1.109-.793,1.777Z" fill="#142b3e"/>
+      </g>
+    </g>
+  </g>
+</svg>
