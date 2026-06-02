@@ -69,6 +69,9 @@ const translations = {
         downloads: 'Downloads',
         galeriaProjeto: 'Galeria de imagens do projeto',
         vejaTambem: 'Veja também',
+        cookies: 'Utilizamos cookies para oferecer uma melhor experiência, melhorar o desempenho, analisar como você interage em nosso site e personalizar conteúdo. Para mais informações acesse nossa',
+        cookiePolitica: 'política de privacidade',
+        cookieAceitar: 'Aceitar todos os cookies'
     },
     en: {
         empresa: 'Company',
@@ -138,6 +141,9 @@ const translations = {
         downloads: 'Downloads',
         galeriaProjeto: 'Project image gallery',
         vejaTambem: 'See also',
+        cookies: 'We use cookies to offer a better experience, improve performance, analyze how you interact with our site, and personalize content. For more information, please visit our',
+        cookiePolitica: 'privacy policy',
+        cookieAceitar: 'Accept all cookies'
     },
     es: {
         empresa: 'Empresa',
@@ -207,6 +213,9 @@ const translations = {
         downloads: 'Descargas',
         galeriaProjeto: 'Galería de imágenes del proyecto',
         vejaTambem: 'Ver también',
+        cookies: 'Utilizamos cookies para ofrecer una mejor experiencia, mejorar el rendimiento, analizar cómo interactúa con nuestro sitio y personalizar el contenido. Para obtener más información, visite nuestra',
+        cookiePolitica: 'política de privacidad',
+        cookieAceitar: 'Aceptar todas las cookies'
     }
 };
 
