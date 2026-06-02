@@ -152,7 +152,6 @@ class OpcionaisController extends Controller
             $response = $opcional->save();
 
             $opcional_idioma->titulo = $request->titulo;
-            $opcional_idioma->titulo = $request->titulo;
 
             $opcional_idioma->opcional_id = $opcional->id;
             $opcional_idioma->idioma_id = $idioma->id;
@@ -333,7 +332,7 @@ class OpcionaisController extends Controller
             }
         }
 
-        return to_route('Manager.Opcionais.index')->with('error', ['type' => 'success', 'msg' => 'Não foi possível salvar as informações. Tente novamente mais tarde.']);
+        return to_route('Manager.Opcionais.index')->with('message', ['type' => 'error', 'msg' => 'Não foi possível salvar as informações. Tente novamente mais tarde.']);
     }
 
     /**

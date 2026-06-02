@@ -94,15 +94,15 @@ export default function Show() {
                                     key={index}
                                     className="flex items-center gap-9 py-2.5 px-6 first:rounded-t-[10px] last:rounded-b-[10px] odd:bg-[#EDF1F8]"
                                 >
-                                    {/* <Link
-                                        href={`${route('Produtos.opcionais', {
-                                            segmento: produto.segmento,
-                                            slug: produto.slug,
+                                    <Link
+                                        href={`${route('Opcionais.opcional', {
+                                            categoria: opt.categoria_slug,
                                         })}#${opt.slug}`}
-                                        className="flex max-h-14 min-w-14 items-center justify-center rounded-full border-2 border-primary bg-white font-sora text-6xl text-primary transition-all duration-500 ease-in hover:bg-primary hover:text-white max-[601px]:hidden"
+                                        className={`flex max-h-14 min-w-14 items-center justify-center rounded-full border-2 border-primary bg-white font-sora text-6xl text-primary transition-all duration-500 ease-in hover:bg-primary hover:text-white max-[601px]:hidden ${!opt.categoria_slug ? 'opacity-0 pointer-events-none' : ''}`}
                                     >
                                         +
-                                    </Link> */}
+                                    </Link>
+
                                     <p className="font-sora text-xl font-light tracking-tight text-secondary max-[601px]:text-base">
                                         {opt.titulo}
                                     </p>

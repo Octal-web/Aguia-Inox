@@ -37,19 +37,14 @@ class ContactService
                     'id' => $data['departamento_id']
                 ]);
             })
-            ->pluck('endereco')
-            ->toArray();
+            ->pluck('endereco');
 
         Mail::send('emails.contact', $data, function ($message) use ($data, $destinatarios) {
-                $todosDestinatarios = array_merge(
-                    ['aguiainox@aguiainox.ind.br', 'bianca.emer@aguiainox.ind.br'],
-                    $destinatarios
-                );
-
-                $message->from('naoresponder@aguiainox.ind.br', 'Águia Inox')
-                        ->to($todosDestinatarios)
-                        ->bcc(['rafael@8poroito.com.br'])
-                        ->subject('Um novo contato foi enviado através do site!');
-            });
+            $message->from('naoresponder@aguiainox.ind.br', 'Águia Inox')
+                    ->to('atendimento@aguiainox.com')
+                    ->to($destinatarios)
+                    ->bcc(['rafael@8poroito.com.br', 'aguiainox@aguiainox.ind.br'])
+                    ->subject('Um novo contato foi enviado através do site!');
+        });
     }
 }

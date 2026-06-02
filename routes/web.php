@@ -34,7 +34,6 @@ use App\Http\Controllers\Manager\ImagensProdutosController as ManagerImagensProd
 use App\Http\Controllers\Manager\OpcionaisController as ManagerOpcionaisController;
 use App\Http\Controllers\Manager\OpcionaisModelosController as ManagerOpcionaisModelosController;
 use App\Http\Controllers\Manager\OpcionaisCategoriasController as ManagerOpcionaisCategoriasController;
-use App\Http\Controllers\Manager\OpcionaisSubcategoriasController as ManagerOpcionaisSubcategoriasController;
 use App\Http\Controllers\Manager\DownloadsController as ManagerDownloadsController;
 use App\Http\Controllers\Manager\ContatoController as ManagerContatoController;
 use App\Http\Controllers\Manager\DepartamentosController as ManagerDepartamentosController;
@@ -60,7 +59,7 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => ['lo
     Route::get('/news/{categoria?}/{slug?}', [NewsController::class, 'post'])->name('News.post');
 
     Route::get('/opcionais', [OpcionaisController::class, 'index'])->name('Opcionais.index');
-    Route::get('/opcionais/{categoria?}/{slug?}', [OpcionaisController::class, 'post'])->name('Opcionais.modelo');
+    Route::get('/opcionais/{categoria?}', [OpcionaisController::class, 'opcional'])->name('Opcionais.opcional');
 
     Route::get('/pesquisar', [PesquisarController::class, 'index'])->name('Pesquisar.index');
 
@@ -74,6 +73,8 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => ['lo
     Route::get('/trabalhe-conosco', [TrabalheConoscoController::class, 'index'])->name('TrabalheConosco.index');
     
     Route::get('/politica-de-privacidade', [PoliticasController::class, 'privacidade'])->name('Politicas.privacidade');
+    Route::get('/politica-de-cookies', [PoliticasController::class, 'cookies'])->name('Politicas.cookies');
+    Route::get('/politica-canal-de-denuncias', [PoliticasController::class, 'canalDenuncia'])->name('Politicas.canalDenuncia');
 });
 
 Route::prefix('/manager')->group(function() {
@@ -95,8 +96,12 @@ Route::prefix('/manager')->group(function() {
         Route::post('/imagens/conteudo/visibilidade/{id}', [ManagerImagensController::class, 'visibilidade'])->name('Manager.Imagens.visibilidade');
         Route::post('/imagens/conteudo/excluir/{id}', [ManagerImagensController::class, 'excluir'])->name('Manager.Imagens.excluir');
 
-        Route::post('/enviar-imagem', [ManagerFinderController::class, 'enviar'])->name('Manager.Finder.enviar');
-
+        Route::get('/finder/list', [ManagerFinderController::class, 'list'])->name('Manager.Finder.list');
+        Route::post('/finder/upload', [ManagerFinderController::class, 'upload'])->name('Manager.Finder.upload');
+        Route::delete('/finder/delete', [ManagerFinderController::class, 'delete'])->name('Manager.Finder.delete');
+        Route::post('/finder/rename', [ManagerFinderController::class, 'rename'])->name('Manager.Finder.rename');
+        Route::post('/finder/folder', [ManagerFinderController::class, 'createFolder'])->name('Manager.Finder.createFolder');
+        Route::post('/finder/move', [ManagerFinderController::class, 'move'])->name('Manager.Finder.move');
 
         Route::get('/home', [ManagerHomeController::class, 'index'])->name('Manager.Home.index');
         Route::post('/home/atualizar/dados', [ManagerHomeController::class, 'atualizarInfo'])->name('Manager.Home.atualizarInfo');
@@ -125,16 +130,6 @@ Route::prefix('/manager')->group(function() {
         Route::get('/institucional', [ManagerInstitucionalController::class, 'index'])->name('Manager.Institucional.index');
 
         
-        Route::post('/institucional/acontecimentos/ordenar', [ManagerAcontecimentosController::class, 'ordenar'])->name('Manager.Acontecimentos.ordenar');
-        Route::post('/institucional/acontecimentos/visibilidade/{id}', [ManagerAcontecimentosController::class, 'visibilidade'])->name('Manager.Acontecimentos.visibilidade');
-        Route::post('/institucional/acontecimentos/excluir/{id}', [ManagerAcontecimentosController::class, 'excluir'])->name('Manager.Acontecimentos.excluir');
-
-        Route::get('/institucional/acontecimentos/adicionar', [ManagerAcontecimentosController::class, 'adicionar'])->name('Manager.Acontecimentos.adicionar');
-        Route::post('/institucional/acontecimentos/adicionar', [ManagerAcontecimentosController::class, 'novo'])->name('Manager.Acontecimentos.novo');
-        Route::get('/institucional/acontecimentos/editar/{id}', [ManagerAcontecimentosController::class, 'editar'])->name('Manager.Acontecimentos.editar');
-        Route::post('/institucional/acontecimentos/editar/{id}', [ManagerAcontecimentosController::class, 'atualizar'])->name('Manager.Acontecimentos.atualizar');
-
-        
         Route::post('/selos/ordenar', [ManagerSelosController::class, 'ordenar'])->name('Manager.Selos.ordenar');
         Route::post('/selos/visibilidade/{id}', [ManagerSelosController::class, 'visibilidade'])->name('Manager.Selos.visibilidade');
         Route::post('/selos/excluir/{id}', [ManagerSelosController::class, 'excluir'])->name('Manager.Selos.excluir');
@@ -154,16 +149,6 @@ Route::prefix('/manager')->group(function() {
         Route::post('/diferenciais/adicionar', [ManagerDiferenciaisController::class, 'novo'])->name('Manager.Diferenciais.novo');
         Route::get('/diferenciais/editar/{id}', [ManagerDiferenciaisController::class, 'editar'])->name('Manager.Diferenciais.editar');
         Route::post('/diferenciais/editar/{id}', [ManagerDiferenciaisController::class, 'atualizar'])->name('Manager.Diferenciais.atualizar');
-        
-
-        Route::post('/setores/ordenar', [ManagerSetoresController::class, 'ordenar'])->name('Manager.Setores.ordenar');
-        Route::post('/setores/visibilidade/{id}', [ManagerSetoresController::class, 'visibilidade'])->name('Manager.Setores.visibilidade');
-        Route::post('/setores/excluir/{id}', [ManagerSetoresController::class, 'excluir'])->name('Manager.Setores.excluir');
-
-        Route::get('/setores/adicionar', [ManagerSetoresController::class, 'adicionar'])->name('Manager.Setores.adicionar');
-        Route::post('/setores/adicionar', [ManagerSetoresController::class, 'novo'])->name('Manager.Setores.novo');
-        Route::get('/setores/editar/{id}', [ManagerSetoresController::class, 'editar'])->name('Manager.Setores.editar');
-        Route::post('/setores/editar/{id}', [ManagerSetoresController::class, 'atualizar'])->name('Manager.Setores.atualizar');
         
 
         Route::get('/segmentos', [ManagerSegmentosController::class, 'index'])->name('Manager.Segmentos.index');
@@ -247,16 +232,6 @@ Route::prefix('/manager')->group(function() {
         Route::post('/opcionais/categorias/excluir/{id}', [ManagerOpcionaisCategoriasController::class, 'excluir'])->name('Manager.Opcionais.Categorias.excluir');
         
 
-        Route::get('/opcionais/subcategorias/adicionar/{id}', [ManagerOpcionaisSubcategoriasController::class, 'adicionar'])->name('Manager.Opcionais.Subcategorias.adicionar');
-        Route::post('/opcionais/subcategorias/adicionar/{id}', [ManagerOpcionaisSubcategoriasController::class, 'novo'])->name('Manager.Opcionais.Subcategorias.novo');
-        Route::get('/opcionais/subcategorias/editar/{id}', [ManagerOpcionaisSubcategoriasController::class, 'editar'])->name('Manager.Opcionais.Subcategorias.editar');
-        Route::post('/opcionais/subcategorias/editar/{id}', [ManagerOpcionaisSubcategoriasController::class, 'atualizar'])->name('Manager.Opcionais.Subcategorias.atualizar');
-
-        Route::post('/opcionais/subcategorias/ordenar/{id}', [ManagerOpcionaisSubcategoriasController::class, 'ordenar'])->name('Manager.Opcionais.Subcategorias.ordenar');
-        Route::post('/opcionais/subcategorias/visibilidade/{id}', [ManagerOpcionaisSubcategoriasController::class, 'visibilidade'])->name('Manager.Opcionais.Subcategorias.visibilidade');
-        Route::post('/opcionais/subcategorias/excluir/{id}', [ManagerOpcionaisSubcategoriasController::class, 'excluir'])->name('Manager.Opcionais.Subcategorias.excluir');
-
-
         Route::get('/downloads', [ManagerDownloadsController::class, 'index'])->name('Manager.Downloads.index');
 
         Route::post('/downloads/ordenar', [ManagerDownloadsController::class, 'ordenar'])->name('Manager.Downloads.ordenar');
@@ -315,6 +290,8 @@ Route::prefix('/manager')->group(function() {
 
 
         Route::get('/politicas/privacidade', [ManagerPoliticasController::class, 'privacidade'])->name('Manager.Politicas.privacidade');
+        Route::get('/politicas/cookies', [ManagerPoliticasController::class, 'cookies'])->name('Manager.Politicas.cookies');
+        Route::get('/politicas/canal-denuncia', [ManagerPoliticasController::class, 'canalDenuncia'])->name('Manager.Politicas.canalDenuncia');
 
 
         Route::get('/trabalhe-conosco', [ManagerTrabalheConoscoController::class, 'index'])->name('Manager.TrabalheConosco.index');

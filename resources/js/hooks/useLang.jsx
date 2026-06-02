@@ -77,10 +77,10 @@ const translations = {
         filtrosNaoEncontrados:
             "Não foram encontradas postagens com o filtro selecionado",
         categoriaNaoEncontrada: "Nenhuma categoria disponível",
-        compartilhe: 'Compartilhe esse conteúdo em suas redes sociais',
+        compartilhe: "Compartilhe esse conteúdo em suas redes sociais",
         voltarProdutos: "Voltar a página de produtos",
-        recolher: 'Recolher',
-        expandir: 'Ver Mais Categorias +'
+        recolher: "Recolher",
+        expandir: "Ver Mais Categorias +",
     },
     en: {
         empresa: "Company",
@@ -158,11 +158,10 @@ const translations = {
         cookieAceitar: "Accept all cookies",
         filtrosNaoEncontrados: "No posts were found with the selected filter",
         categoriaNaoEncontrada: "No category available",
-        compartilhe: 'Share this content on your social media',
+        compartilhe: "Share this content on your social media",
         voltarProdutos: "Back to products page",
-        recolher: 'Minimize',
-        expandir: 'See More Categories +'
-
+        recolher: "Minimize",
+        expandir: "See More Categories +",
     },
     es: {
         empresa: "Empresa",
@@ -241,11 +240,10 @@ const translations = {
         filtrosNaoEncontrados:
             "No se encontraron publicaciones con el filtro seleccionado",
         categoriaNaoEncontrada: "Ninguna categoría disponible",
-        compartilhe: 'Comparte este contenido en tus redes sociales',
+        compartilhe: "Comparte este contenido en tus redes sociales",
         voltarProdutos: "Volver a la página de productos",
-        recolher: 'Recoger',
-        expandir: 'Ver más categorías +'
-
+        recolher: "Recoger",
+        expandir: "Ver más categorías +",
     },
 };
 

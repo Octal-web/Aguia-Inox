@@ -1,12 +1,11 @@
 import { Footer } from "@/components/footer";
 import { Header } from "@/components/header";
 import { Separator } from "@/components/ui/separator";
-import { useLang } from "@/hooks/useLang";
 import { Link, usePage } from "@inertiajs/react";
+import { useLang } from "@/hooks/useLang";
 
 export default function Show() {
     const { post, posts } = usePage().props;
-console.log(post)
     const lang = useLang(); 
     return (
         <>

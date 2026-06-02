@@ -21,7 +21,11 @@ const menus = [
     { id: 5, label: 'Contato', icon: faEnvelope, href: route('Manager.Contato.index'), controllers: ['Contato', 'Newsletter', 'Departamentos'] },
     { id: 6, label: 'News', icon: faNewspaper, href: route('Manager.News.index'), controllers: ['News', 'Posts', 'PostsCategorias'] },
     { id: 7, label: 'Trabalhe Conosco', icon: faFileSignature, href: route('Manager.TrabalheConosco.index'), controllers: ['TrabalheConosco'] },
-    { id: 8, label: 'Política de Privacidade', icon: faFileText, href: route('Manager.Politicas.privacidade'), controllers: ['Politicas'] }
+    { id: 8, label: 'Políticas', icon: faFileText, controllers: ['Politicas'], subMenu: [
+        { label: 'Política de Privacidade', href: route('Manager.Politicas.privacidade') },
+        { label: 'Política de Cookies', href: route('Manager.Politicas.cookies') },
+        { label: 'Canal de Denúncia', href: route('Manager.Politicas.canalDenuncia') }
+    ]}
 ];
 
 const AdminEnologiaLayout = ({ children }) => {

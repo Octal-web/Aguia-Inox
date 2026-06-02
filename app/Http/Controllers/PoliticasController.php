@@ -16,4 +16,24 @@ class PoliticasController extends Controller
 
         return Inertia::render('PoliticaPrivacidade');
     }
+    
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function cookies() {
+
+        return Inertia::render('PoliticaCookies');
+    }
+    
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function canalDenuncia() {
+
+        return Inertia::render('PoliticaCanalDenuncia');
+    }
 };

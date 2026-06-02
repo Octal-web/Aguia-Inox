@@ -119,10 +119,10 @@ class ProdutosController extends Controller
 
         $pagina = new Pagina;
 
-        $pagina->titulo = $produto->produtosCategorias[0]->titulo_pagina . ' - Águia Inox';
-        $pagina->descricao = $produto->produtosCategorias[0]->descricao_pagina . ' - Águia Inox';
-        $pagina->titulo_compartilhamento = $produto->produtosCategorias[0]->titulo_pagina . ' - Águia Inox';
-        $pagina->descricao_compartilhamento = $produto->produtosCategorias[0]->descricao_pagina . ' - Águia Inox';
+        $pagina->titulo = $produto->produtosIdiomas[0]->titulo_pagina . ' | Águia Inox';
+        $pagina->descricao = $produto->produtosIdiomas[0]->descricao_pagina . ' | Águia Inox';
+        $pagina->titulo_compartilhamento = $produto->produtosIdiomas[0]->titulo_pagina . ' | Águia Inox';
+        $pagina->descricao_compartilhamento = $produto->produtosIdiomas[0]->descricao_pagina . ' | Águia Inox';
 
         list($width, $height, $type, $attr) = getimagesize(public_path('/content/products/thumbs/b/' . $produto->imagem));
 
@@ -219,6 +219,7 @@ class ProdutosController extends Controller
                     'id' => $opcional->id,
                     'slug' => $opcional->slug,
                     'titulo' => $opcional->opcionaisIdiomas->first()?->titulo,
+                    'categoria_slug' => $opcional->categoria?->slug,
                 ];
             }),
             'imagens' => $produto->imagensProdutos->map(function ($imagem) {
@@ -240,7 +241,8 @@ class ProdutosController extends Controller
 
         return Inertia::render('Produto', [
             'produto' => $produtoData,
-            'outrosProdutos' => $outrosProdutos
+            'outrosProdutos' => $outrosProdutos,
+            'pagina' => $pagina
         ]);
     }
 
@@ -313,10 +315,10 @@ class ProdutosController extends Controller
 
         $pagina = new Pagina;
 
-        $pagina->titulo = $produto->produtosCategorias[0]->titulo_pagina . ' - Águia Inox';
-        $pagina->descricao = $produto->produtosCategorias[0]->descricao_pagina . ' - Águia Inox';
-        $pagina->titulo_compartilhamento = $produto->produtosCategorias[0]->titulo_pagina . ' - Águia Inox';
-        $pagina->descricao_compartilhamento = $produto->produtosCategorias[0]->descricao_pagina . ' - Águia Inox';
+        $pagina->titulo = $produto->produtosIdiomas[0]->titulo_pagina . ' | Águia Inox';
+        $pagina->descricao = $produto->produtosIdiomas[0]->descricao_pagina . ' | Águia Inox';
+        $pagina->titulo_compartilhamento = $produto->produtosIdiomas[0]->titulo_pagina . ' | Águia Inox';
+        $pagina->descricao_compartilhamento = $produto->produtosIdiomas[0]->descricao_pagina . ' | Águia Inox';
 
         list($width, $height, $type, $attr) = getimagesize(public_path('/content/products/thumbs/b/' . $produto->imagem));
 
@@ -403,7 +405,8 @@ class ProdutosController extends Controller
 
         return Inertia::render('Opcionais', [
             'produto' => $produtoData,
-            'outrosProdutos' => $outrosProdutos
+            'outrosProdutos' => $outrosProdutos,
+            'pagina' => $pagina
         ]);
     }
     

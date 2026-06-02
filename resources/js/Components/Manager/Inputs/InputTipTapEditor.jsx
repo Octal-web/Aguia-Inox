@@ -412,7 +412,7 @@ export const InputTipTapEditor = ({ title, name, toolbar = [], value, idioma, on
                 </div>
                 
                 <div className="p-3 min-h-40 overflow-auto max-h-screen">
-                    <EditorContent editor={editor} className="[&_.ProseMirror]:min-h-[8.5em] [&_p]:text-sm [&_h1]:text-4xl [&_h2]:text-3xl [&_h3]:text-2xl [&_h4]:text-xl [&_h5]:text-base [&_th]:border [&_td]:border [&_ul]:list-inside [&_li]:list-disc [&_ul>li>p]:contents [&_a]:underline [&_a]:text-blue-500 [&_.ProseMirror-focused]:outline-none" />
+                    <EditorContent editor={editor} className="[&_.ProseMirror]:min-h-[8.5em] [&_p]:text-sm [&_h1]:text-4xl [&_h2]:text-3xl [&_h3]:text-2xl [&_h4]:text-xl [&_h5]:text-base [&_th]:border [&_td]:border [&_ul]:list-inside [&_ul_li]:list-disc [&_ul>li>p]:inline [&_ul>li>p]:my-0 [&_ol]:list-inside [&_ol_li]:list-decimal [&_ol>li>p]:inline [&_ol>li>p]:my-0 [&_a]:underline [&_a]:text-blue-500 [&_.ProseMirror-focused]:outline-none" />
                 </div>
             </div>
         </div>

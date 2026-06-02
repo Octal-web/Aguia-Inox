@@ -23,7 +23,7 @@ const Page = () => {
         nome: ['Produtos', 'produto'],
         controller: 'Produtos',
         imagens: true,
-        imgClass: '',
+        imgClass: 'max-h-50',
         editavel: true,
         conteudos: produtos
     };

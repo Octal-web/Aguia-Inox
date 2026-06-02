@@ -77,45 +77,52 @@ class OpcionaisController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function opcional($categoria = null, $slug = null) {
-        if(!$slug || !$categoria) {
+    public function opcional($categoria = null) {
+        if(!$categoria) {
             return Inertia::location(route('Home.index'));
         }
 
         $idioma = inertia()->getShared('idioma');
 
-        $opcional = Opcional::query()
+        $categoria = OpcionalCategoria::query()
             ->where([
                 'excluido' => NULL,
                 'visivel' => true,
-                'slug' => $slug
+                'slug' => $categoria
             ])
-            ->whereHas('categoria', function ($q) use ($categoria) {
-                $q->where([
-                    'excluido' => NULL,
-                    'visivel' => true,
-                    'slug' => $categoria
-                ]);
-            })
             ->with([
-                'opcionaisIdiomas' => function ($q) use ($idioma) {
+                'opcionaisCategoriasIdiomas' => function ($q) use ($idioma) {
                     $q->whereHas('idiomas', function ($r) use ($idioma) {
                         $r->where('codigo', $idioma)
-                          ->orWhere('padrao', true);
-                    })
-                    ->orderBy('idioma_id', 'DESC');
+                        ->orWhere('padrao', true);
+                    })->orderBy('idioma_id', 'DESC');
                 },
-                'opcionaisModelos' => function ($q) use ($idioma) {
+                'opcionais' => function ($q) use ($idioma) {
                     $q->where([
                         'excluido' => NULL,
                         'visivel' => true
                     ])
                     ->with([
-                        'opcionaisModelosIdiomas' => function ($qi) use ($idioma) {
+                        'opcionaisIdiomas' => function ($qi) use ($idioma) {
                             $qi->whereHas('idiomas', function ($ri) use ($idioma) {
                                 $ri->where('codigo', $idioma)
-                                   ->orWhere('padrao', true);
+                                ->orWhere('padrao', true);
                             })->orderBy('idioma_id', 'DESC');
+                        },
+                        'opcionaisModelos' => function ($qm) use ($idioma) {
+                            $qm->where([
+                                'excluido' => NULL,
+                                'visivel' => true
+                            ])
+                            ->with([
+                                'opcionaisModelosIdiomas' => function ($qmi) use ($idioma) {
+                                    $qmi->whereHas('idiomas', function ($ri) use ($idioma) {
+                                        $ri->where('codigo', $idioma)
+                                        ->orWhere('padrao', true);
+                                    })->orderBy('idioma_id', 'DESC');
+                                }
+                            ])
+                            ->orderBy('ordem', 'ASC');
                         }
                     ])
                     ->orderBy('ordem', 'ASC');
@@ -123,31 +130,36 @@ class OpcionaisController extends Controller
             ])
             ->first();
 
-        if(!$opcional) {
+        if (!$categoria) {
             return Inertia::location(route('Opcionais.index'));
         }
 
-        $opcionalData = [
-            'id' => $opcional->id,
-            'slug' => $opcional->slug,
-            'titulo' => $opcional->opcionaisIdiomas->first()?->titulo,
-            'categoria' => $opcional->categoria->opcionaisCategoriasIdiomas->first()?->nome,
-            'categoria_slug' => $opcional->categoria->slug,
-            'descricao' => $opcional->opcionaisIdiomas->first()?->descricao,
-            'video' => $opcional->video ? getEmbedUrl($opcional->video) : null,
-            'modelos' => $opcional->opcionaisModelos->map(function ($modelo) {
+        $categoriaData = [
+            'id' => $categoria->id,
+            'slug' => $categoria->slug,
+            'nome' => $categoria->opcionaisCategoriasIdiomas->first()?->nome,
+            'opcionais' => $categoria->opcionais->map(function ($opcional) {
                 return [
-                    'id' => $modelo->id,
-                    'nome' => $modelo->opcionaisModelosIdiomas->first()?->nome,
-                    'descricao' => $modelo->opcionaisModelosIdiomas->first()?->descricao,
-                    'imagem' => rafator('content/optionals/models/' . $modelo->imagem),
-                    'slug' => $modelo->slug,
+                    'id' => $opcional->id,
+                    'slug' => $opcional->slug,
+                    'nome' => $opcional->opcionaisIdiomas->first()?->nome,
+                    'titulo' => $opcional->opcionaisIdiomas->first()?->titulo,
+                    'video' => $opcional->video ? getEmbedUrl($opcional->video) : null,
+                    'modelos' => $opcional->opcionaisModelos->map(function ($modelo) {
+                        return [
+                            'id' => $modelo->id,
+                            'slug' => $modelo->slug,
+                            'nome' => $modelo->opcionaisModelosIdiomas->first()?->nome,
+                            'descricao' => $modelo->opcionaisModelosIdiomas->first()?->descricao,
+                            'imagem' => rafator('content/optionals/models/' . $modelo->imagem),
+                        ];
+                    }),
                 ];
-            })
+            }),
         ];
 
         return Inertia::render('Opcional', [
-            'opcional' => $opcionalData
+            'categoria' => $categoriaData
         ]);
     }
 };
