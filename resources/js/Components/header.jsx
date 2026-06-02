@@ -427,7 +427,7 @@ export function Header() {
                 </div>
 
                 <div 
-                    className={`overflow-hidden border-t border-gray-200 bg-white shadow-lg transition-all duration-300 ease-in-out min-[1235px]:hidden ${
+                    className={`overflow-hidden border-t border-gray-200 bg-white shadow-lg transition-all duration-300 ease-in-out min-[1280px]:hidden ${
                         isMobileMenuOpen 
                             ? 'max-h-[600px] opacity-100' 
                             : 'max-h-0 opacity-0 border-t-0'
