@@ -1,9 +1,9 @@
-import { Footer } from "@/components/footer";
-import { Header } from "@/components/header";
-import { Button } from "@/components/ui/button";
+import { Footer } from "@/Components/footer";
+import { Header } from "@/Components/header";
+import { Button } from "@/Components/ui/button";
 import { usePage } from "@inertiajs/react";
 
-import { ProductVideo } from "@/components/ProductVideo";
+import { ProductVideo } from "@/Components/ProductVideo";
 
 import { useLang } from "@/hooks/useLang";
 

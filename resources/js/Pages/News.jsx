@@ -1,8 +1,8 @@
-import { ExploreCarousel } from "@/components/explore-carousel";
-import { Footer } from "@/components/footer";
-import { Header } from "@/components/header";
-import { Button } from "@/components/ui/button";
-import { Separator } from "@/components/ui/separator";
+import { ExploreCarousel } from "@/Components/explore-carousel";
+import { Footer } from "@/Components/footer";
+import { Header } from "@/Components/header";
+import { Button } from "@/Components/ui/button";
+import { Separator } from "@/Components/ui/separator";
 import { Link, router, usePage } from "@inertiajs/react";
 import { useState, useEffect } from "react";
 import { ChevronDown, Filter, X } from "lucide-react";

@@ -1,10 +1,10 @@
-import { Footer } from "@/components/footer";
-import { Header } from "@/components/header";
-import { PartnerForm } from "@/components/partner-form";
+import { Footer } from "@/Components/footer";
+import { Header } from "@/Components/header";
+import { PartnerForm } from "@/Components/partner-form";
 import { Link, usePage } from '@inertiajs/react';
 
-import { Button } from "@/components/ui/button";
-import { Separator } from "@/components/ui/separator";
+import { Button } from "@/Components/ui/button";
+import { Separator } from "@/Components/ui/separator";
 
 import { useLang } from "@/hooks/useLang";
 

@@ -1,7 +1,7 @@
 import { Link, usePage } from "@inertiajs/react";
 
-import { Footer } from "@/components/footer";
-import { Header } from "@/components/header";
+import { Footer } from "@/Components/footer";
+import { Header } from "@/Components/header";
 
 import { useLang } from "@/hooks/useLang";
 

@@ -1,12 +1,12 @@
-import { Footer } from "@/components/footer";
-import { Gallery } from "@/components/gallery";
-import { Header } from "@/components/header";
-import { Button } from "@/components/ui/button";
+import { Footer } from "@/Components/footer";
+import { Gallery } from "@/Components/gallery";
+import { Header } from "@/Components/header";
+import { Button } from "@/Components/ui/button";
 import { cn } from "@/lib/utils";
 import { Link, usePage } from "@inertiajs/react";
 import { useState } from "react";
 
-import { ProductVideo } from '@/components/ProductVideo';
+import { ProductVideo } from '@/Components/ProductVideo';
 
 import { useLang } from "@/hooks/useLang";
 import { FileText, Download } from "lucide-react";

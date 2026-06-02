@@ -1,4 +1,4 @@
-import { ProductVideo } from "@/components/ProductVideo";
+import { ProductVideo } from "@/Components/ProductVideo";
 
 export function AboutFrontier({ content }) {
     

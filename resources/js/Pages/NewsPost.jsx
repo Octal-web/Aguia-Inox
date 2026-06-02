@@ -1,6 +1,6 @@
-import { Footer } from "@/components/footer";
-import { Header } from "@/components/header";
-import { Separator } from "@/components/ui/separator";
+import { Footer } from "@/Components/footer";
+import { Header } from "@/Components/header";
+import { Separator } from "@/Components/ui/separator";
 import { Link, usePage } from "@inertiajs/react";
 import { useLang } from "@/hooks/useLang";
 

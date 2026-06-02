@@ -1,7 +1,7 @@
 import { ChevronDown, Menu, X } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { usePage, Link, Head } from '@inertiajs/react';
-import { ScrollArea } from "@/components/ui/scroll-area";
+import { ScrollArea } from "@/Components/ui/scroll-area";
 
 import Lenis from 'lenis';
 
