@@ -126,7 +126,6 @@ const translations = {
         desenvolvidoPor: "Developed by",
         selo: "Seal",
         solicitarOrcamento: "Request a quote",
-        sobreEsseSegmento: "About this segment",
         conhecerProduto: "Learn about the product",
         sejaParceiro: "Be a partner",
         sejaParceiroTexto:
@@ -207,7 +206,6 @@ const translations = {
         desenvolvidoPor: "Desarrollado por",
         selo: "Sello",
         solicitarOrcamento: "Solicitar presupuesto",
-        sobreEsseSegmento: "Acerca de este segmento",
         conhecerProduto: "Conocer el producto",
         sejaParceiro: "Sea un socio",
         sejaParceiroTexto:
