@@ -56,7 +56,7 @@ export function Footer({ margin = true }) {
                         />
                         <div className="pt-4">
                             <span className="font-sora font-medium text-primary capitalize">
-                                Empresa
+                                {lang('empresa')}
                             </span>
                             <ul className="mt-4 [1025px]space-y-1 max-[1025px]:flex max-[1025px]:flex-wrap max-[1025px]:justify-around max-[1025px]:space-x-1">
                                 <li>

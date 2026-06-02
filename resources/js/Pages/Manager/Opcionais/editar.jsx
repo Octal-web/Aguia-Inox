@@ -49,7 +49,7 @@ const Page = () => {
     
     return (
         <AdminLayout>
-            <Breadcrumb icon={faImage} items={breadcrumbItems} current="Editar" idioma={idioma.codigo} idiomas={idiomas} />
+            <Breadcrumb icon={faImage} items={breadcrumbItems} current="Editar" idioma={idioma.codigo} idiomas={idiomas} id={opcional.id}/>
 
             <div className="mb-6 rounded-sm border border-stroke bg-white px-5 py-5 shadow-md">
                 <Link
