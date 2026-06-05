@@ -1,4 +1,4 @@
-import { useLang } from "@/Hooks/useLang";
+import { useLang } from "@/hooks/useLang";
 import { Head, Link } from "@inertiajs/react";
 
 const Erro = ({ status }) => {
