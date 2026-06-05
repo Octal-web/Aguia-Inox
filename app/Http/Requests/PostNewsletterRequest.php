@@ -34,8 +34,8 @@ class PostNewsletterRequest extends FormRequest
     public function messages()
     {
         return [
-            'email.required' => 'Por favor, insira seu e-mail.',
-            'email.email' => 'Por favor, insira um e-mail válido.',
+            'email.required' => __('newsletter.email.required'),
+            'email.email' => __('newsletter.email.email'),
         ];
     }
 }

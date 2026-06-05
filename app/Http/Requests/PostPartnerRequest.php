@@ -41,16 +41,16 @@ class PostPartnerRequest extends FormRequest
     public function messages()
     {
         return [
-            'nome.required' => 'Por favor, insira seu nome.',
-            'email.required' => 'Por favor, insira seu e-mail.',
-            'email.email' => 'Por favor, insira um e-mail válido.',
-            'cnpj.required' => 'Por favor, insira seu CNPJ.',
-            'cnpj.cnpj' => 'Por favor, insira um CNPJ válido.',
-            'telefone.required' => 'Por favor, insira seu telefone.',
-            // 'assunto.required'  => 'Por favor, informe o assunto da sua mensagem.',
-            'mensagem.required'  => 'Por favor, informe a sua mensagem.',
-            'politica.required' => 'Para continuar, você deve concordar com os termos.',
-            'politica.accepted' => 'Para continuar, você deve concordar com os termos.',
+            'nome.required' => __('partner.nome.required'),
+            'email.required' => __('partner.email.required'),
+            'email.email' => __('partner.email.email'),
+            'cnpj.required' => __('partner.cnpj.required'),
+            'cnpj.cnpj' => __('partner.cnpj.cnpj'),
+            'telefone.required' => __('partner.telefone.required'),
+            // 'assunto.required'  => __('partner.assunto.required'),
+            'mensagem.required'  => __('partner.mensagem.required'),
+            'politica.required' => __('partner.politica.required'),
+            'politica.accepted' => __('partner.politica.accepted'),
         ];
     }
 }
