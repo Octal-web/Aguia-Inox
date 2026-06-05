@@ -39,15 +39,15 @@ class PostContactRequest extends FormRequest
     public function messages()
     {
         return [
-            'nome.required' => 'Por favor, insira seu nome.',
-            'email.required' => 'Por favor, insira seu e-mail.',
-            'email.email' => 'Por favor, insira um e-mail válido.',
-            'departamento_id.required' => 'Por favor, selecione um departamento.',
-            'departamento_id.exists' => 'O departamento selecionado é inválido.',
-            'assunto.required'  => 'Por favor, informe o assunto da sua mensagem.',
-            'mensagem.required'  => 'Por favor, informe a sua mensagem.',
-            'politica.required' => 'Para continuar, você deve concordar com os termos.',
-            'politica.accepted' => 'Para continuar, você deve concordar com os termos.',
+            'nome.required' => __('contact.nome.required'),
+            'email.required' => __('contact.email.required'),
+            'email.email' => __('contact.email.email'),
+            'departamento_id.required' => __('contact.departamento_id.required'),
+            'departamento_id.exists' => __('contact.departamento_id.exists'),
+            'assunto.required'  => __('contact.assunto.required'),
+            'mensagem.required'  => __('contact.mensagem.required'),
+            'politica.required' => __('contact.politica.required'),
+            'politica.accepted' => __('contact.politica.accepted'),
         ];
     }
 }
