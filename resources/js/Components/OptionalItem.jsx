@@ -26,7 +26,7 @@ export const OptionalItem = ({ item }) => {
                             <img
                                 src={modelo.imagem}
                                 alt={modelo.nome}
-                                className="max-w-sm shrink-0 hidden"
+                                className="max-w-sm shrink-0 mb-4"
                             />
                             <div>
                                 <h3 className="text-2xl font-semibold text-primary">
