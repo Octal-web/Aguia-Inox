@@ -48,84 +48,88 @@ class SitemapController
             }
         }
 
-        Segmento::query()
-            ->where([
-                'excluido' => NULL,
-                'visivel' => true
-            ])
-            ->get()
-            ->each(function ($segmento) use ($sitemap) {
-                $sitemap->add(
-                    Url::create(
-                        route('Segmentos.segmento', [
-                            'slug' => $segmento->slug,
-                        ])
-                    )
-                        ->setLastModificationDate($segmento->modificado ?? $segmento->criado)
-                        ->setPriority(0.8)
-                );
-            });
-
-        ProdutoCategoria::query()
-            ->with(['segmento', 'produtos'])
-            ->where([
-                'excluido' => null,
-                'visivel' => true
-            ])
-            ->get()
-            ->each(function ($categoria) use ($sitemap) {
-                foreach ($categoria->produtos as $produto) {
-
+        if (Route::has('Segmentos.segmento'))
+            Segmento::query()
+                ->where([
+                    'excluido' => NULL,
+                    'visivel' => true
+                ])
+                ->get()
+                ->each(function ($segmento) use ($sitemap) {
                     $sitemap->add(
                         Url::create(
-                            route('Produtos.produto', [
-                                'segmento' => $categoria->segmento->slug,
-                                'slug' => $produto->slug,
+                            route('Segmentos.segmento', [
+                                'slug' => $segmento->slug,
                             ])
                         )
-                            ->setLastModificationDate($produto->modificado ?? $produto->criado)
-                            ->setPriority(0.7)
+                            ->setLastModificationDate($segmento->modificado ?? $segmento->criado)
+                            ->setPriority(0.8)
                     );
-                }
-            });
+                });
 
-        Post::query()
-            ->with(['postCategoria'])
-            ->where([
-                'excluido' => null,
-                'visivel' => true
-            ])
-            ->get()
-            ->each(function ($post) use ($sitemap) {
-                $sitemap->add(
-                    Url::create(
-                        route('News.post', [
-                            'categoria' => $post->postCategoria->slug,
-                            'slug' => $post->slug,
-                        ])
-                    )
-                        ->setLastModificationDate($post->modificado ?? $post->criado)
-                        ->setPriority(0.6)
-                );
-            });
+        if (Route::has('Produtos.produto'))
+            ProdutoCategoria::query()
+                ->with(['segmento', 'produtos'])
+                ->where([
+                    'excluido' => null,
+                    'visivel' => true
+                ])
+                ->get()
+                ->each(function ($categoria) use ($sitemap) {
+                    foreach ($categoria->produtos as $produto) {
 
-        OpcionalCategoria::query()
-            ->where([
-                'excluido' => null,
-                'visivel' => true
-            ])
-            ->get()
-            ->each(function ($opcional) use ($sitemap) {
-                $sitemap->add(
-                    Url::create(
-                        route('Opcionais.opcional', [
-                            'categoria' => $opcional->slug,
-                        ])
-                    )
-                        ->setLastModificationDate($opcional->modificado ?? $opcional->criado)
-                        ->setPriority(0.6)
-                );
-            });
+                        $sitemap->add(
+                            Url::create(
+                                route('Produtos.produto', [
+                                    'segmento' => $categoria->segmento->slug,
+                                    'slug' => $produto->slug,
+                                ])
+                            )
+                                ->setLastModificationDate($produto->modificado ?? $produto->criado)
+                                ->setPriority(0.7)
+                        );
+                    }
+                });
+
+        if (Route::has('News.post'))
+            Post::query()
+                ->with(['postCategoria'])
+                ->where([
+                    'excluido' => null,
+                    'visivel' => true
+                ])
+                ->get()
+                ->each(function ($post) use ($sitemap) {
+                    $sitemap->add(
+                        Url::create(
+                            route('News.post', [
+                                'categoria' => $post->postCategoria->slug,
+                                'slug' => $post->slug,
+                            ])
+                        )
+                            ->setLastModificationDate($post->modificado ?? $post->criado)
+                            ->setPriority(0.6)
+                    );
+                });
+
+        if (Route::has('Opcionais.opcional'))
+            OpcionalCategoria::query()
+                ->where([
+                    'excluido' => null,
+                    'visivel' => true
+                ])
+                ->get()
+                ->each(function ($opcional) use ($sitemap) {
+                    $sitemap->add(
+                        Url::create(
+                            route('Opcionais.opcional', [
+                                'categoria' => $opcional->slug,
+                            ])
+                        )
+                            ->setLastModificationDate($opcional->modificado ?? $opcional->criado)
+                            ->setPriority(0.6)
+                    );
+                });
 
         return $sitemap;
     }
