@@ -33,7 +33,7 @@ export const OptionalAccordion = ({ title, slug, items }) => {
     }, []);
 
     return (
-        <div className={`relative h-fit before:absolute before:left-[5px] before:top-0 before:w-px before:bg-secondary ${isOpen ? 'before:-bottom-3' : 'before:-bottom-0'}`}>
+        <div className={`relative before:absolute before:left-[5px] before:top-0 before:w-px before:bg-secondary ${isOpen ? 'before:-bottom-3' : 'before:-bottom-0'}`}>
             <button 
                 onClick={() => setIsOpen(!isOpen)}
                 className="ml-8 inline-block group w-fit text-left"

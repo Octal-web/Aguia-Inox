@@ -37,14 +37,6 @@ export const OptionalItem = ({ item }) => {
                         </div>
                     ))}
                 </div>
-                {item.imagem_grafico ? (
-                    <img
-                        src={item.imagem_grafico}
-                        alt={`Gráfico - ${item.titulo}`}
-                        className="mt-10 h-auto max-w-full"
-                        loading="lazy"
-                    />
-                ) : null}
             </div>
         </section>
     );

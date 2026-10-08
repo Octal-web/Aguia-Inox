@@ -145,7 +145,6 @@ class OpcionaisController extends Controller
                     'nome' => $opcional->opcionaisIdiomas->first()?->nome,
                     'titulo' => $opcional->opcionaisIdiomas->first()?->titulo,
                     'video' => $opcional->video ? getEmbedUrl($opcional->video) : null,
-                    'imagem_grafico' => $opcional->imagem_grafico ? rafator('content/optionals/graphics/' . $opcional->imagem_grafico) : null,
                     'modelos' => $opcional->opcionaisModelos->map(function ($modelo) {
                         return [
                             'id' => $modelo->id,
