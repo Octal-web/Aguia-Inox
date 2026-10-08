@@ -18,6 +18,7 @@ const Page = () => {
     ];
 
     const inputItems = [
+        [{ titulo: 'Imagem gráfico', name: 'img_grafico', tamanho: 'col-span-12 lg:col-span-7', tipo: 'imagem', crop: false, largura: 1600, altura: 1600, imagem: opcional.imagem_grafico }],
         [{ titulo: 'Título', name: 'titulo', tamanho: 'col-span-12 md:col-span-6 lg:col-span-4', tipo: 'texto', max: 120 }, { titulo: 'Categoria', name: 'opcional_categoria_id', tamanho: 'col-span-12 md:col-span-6 lg:col-span-4', tipo: 'select', options: categorias }],
     ];
     
