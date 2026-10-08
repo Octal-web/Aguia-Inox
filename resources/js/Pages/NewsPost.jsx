@@ -5,7 +5,7 @@ import { Link, usePage } from "@inertiajs/react";
 import { useLang } from "@/hooks/useLang";
 
 export default function Show() {
-    const { post, posts } = usePage().props;
+    const { post, posts, latestPosts = [] } = usePage().props;
     const lang = useLang(); 
     return (
         <>
@@ -50,9 +50,42 @@ export default function Show() {
                     className="mt-8 object-cover max-[601px]:h-[300px]"
                 />
 
-                <section className="mt-16 flex flex-col gap-16 max-sm:tracking-tight max-md:text-justify ">
-                    <article dangerouslySetInnerHTML={{ __html: post.conteudo }} className="[&_ul]:list-disc [&_ul]:list-inside" />
-                </section>
+                <div className={`mt-20 lg:mt-24 grid items-start gap-12 ${latestPosts.length > 0 ? 'lg:grid-cols-[minmax(0,1fr)_320px]' : ''}`}>
+                    <article
+                        dangerouslySetInnerHTML={{ __html: post.conteudo }}
+                        className="min-w-0 overflow-x-auto break-words max-sm:tracking-tight text-justify [&_img]:max-w-full [&_iframe]:max-w-full [&_ul]:list-disc [&_ul]:list-inside"
+                    />
+
+                    {latestPosts.length > 0 && (
+                        <aside aria-labelledby="latest-news-heading" className="min-w-0">
+                            <h2 id="latest-news-heading" className="font-sora text-2xl font-medium tracking-tight text-secondary">
+                                {lang('ultimasNoticias')}
+                            </h2>
+                            <ul className="mt-8 space-y-5">
+                                {latestPosts.map((item) => (
+                                    <li key={item.id}>
+                                        <Link
+                                            href={route('News.post', { categoria: item.categoria_slug, slug: item.slug })}
+                                            className="group flex items-center gap-5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary"
+                                        >
+                                            <div className="h-24 w-24 shrink-0 sm:h-[120px] sm:w-[120px] rounded-xl overflow-hidden">
+                                                <img
+                                                    src={item.imagem}
+                                                    alt=""
+                                                    loading="lazy"
+                                                    className="object-cover w-full h-full [backface-visibility:_hidden] [transform:_translate3d(0,_0,_0)] group-hover:scale-110 transition-transform"
+                                                />
+                                            </div>
+                                            <h3 className="line-clamp-4 min-w-0 break-words text-base font-medium leading-snug tracking-tight text-secondary transition-colors group-hover:text-primary">
+                                                {item.titulo}
+                                            </h3>
+                                        </Link>
+                                    </li>
+                                ))}
+                            </ul>
+                        </aside>
+                    )}
+                </div>
 
                 <Separator className="mt-24 h-0.5 w-full bg-[#EDF1F8]" />
 

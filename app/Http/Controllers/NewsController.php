@@ -336,10 +336,44 @@ class NewsController extends Controller
                 ];
             });
 
+        $latestPosts = Post::query()
+            ->whereNull('excluido')
+            ->where('visivel', true)
+            ->where('id', '!=', $post->id)
+            ->where(function ($q) {
+                $q->whereNull('publicado')
+                  ->orWhere('publicado', '<=', Carbon::now());
+            })
+            ->whereHas('postCategoria', function ($q) {
+                $q->whereNull('excluido')->where('visivel', true);
+            })
+            ->with([
+                'postsIdiomas' => function ($q) use ($idioma) {
+                    $q->whereHas('idiomas', function ($r) use ($idioma) {
+                        $r->where('codigo', $idioma)->orWhere('padrao', true);
+                    })->orderBy('idioma_id', 'DESC');
+                },
+                'postCategoria',
+            ])
+            ->orderBy('publicado', 'DESC')
+            ->orderBy('id', 'DESC')
+            ->limit(4)
+            ->get()
+            ->map(function ($recentPost) {
+                return [
+                    'id' => $recentPost->id,
+                    'imagem' => asset('content/posts/thumbs/' . $recentPost->imagem),
+                    'titulo' => $recentPost->postsIdiomas->first()?->titulo,
+                    'categoria_slug' => $recentPost->postCategoria->slug,
+                    'slug' => $recentPost->slug,
+                ];
+            });
+
         return Inertia::render('NewsPost', [
             'pagina' => $pagina,
             'post' => $postData,
-            'posts' => $posts
+            'posts' => $posts,
+            'latestPosts' => $latestPosts,
         ]);
     }
 
