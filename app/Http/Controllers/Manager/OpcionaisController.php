@@ -15,6 +15,7 @@ use App\Http\Requests\Manager\PostOptionalRequest;
 use Illuminate\Support\Str;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Response;
+use Illuminate\Support\Facades\File;
 
 use DeepCopy\DeepCopy;
 
@@ -149,6 +150,10 @@ class OpcionaisController extends Controller
             $opcional->slug = $slug;
             $opcional->opcional_categoria_id = $request->opcional_categoria_id;
 
+            $opcional->imagem_grafico = $request->hasFile('img_grafico')
+                ? md5(uniqid((string) rand(), true)) . '.' . strtolower($request->file('img_grafico')->extension())
+                : null;
+
             $response = $opcional->save();
 
             $opcional_idioma->titulo = $request->titulo;
@@ -159,6 +164,10 @@ class OpcionaisController extends Controller
             $response = $opcional_idioma->save();
 
             if ($response) {
+                if ($request->hasFile('img_grafico')) {
+                    $request->file('img_grafico')->move(public_path('content/optionals/graphics/'), $opcional->imagem_grafico);
+                }
+
                 return to_route('Manager.Opcionais.index')->with('message', ['type' => 'success', 'msg' => 'Registro salvo com sucesso!']);
             }
         }
@@ -212,6 +221,7 @@ class OpcionaisController extends Controller
         $opcional = [
             'id' => $opcional->id,
             'opcional_categoria_id' => $opcional->opcional_categoria_id,
+            'imagem_grafico' => $opcional->imagem_grafico ? asset('content/optionals/graphics/' . $opcional->imagem_grafico) : null,
             'titulo' => count($opcional->opcionaisIdiomas) ? $opcional->opcionaisIdiomas[0]->titulo : null,
         ];
 
@@ -324,10 +334,23 @@ class OpcionaisController extends Controller
 
             $opcional_idioma->titulo = $request->titulo;
 
+            $imagemGraficoOriginal = $opcional->imagem_grafico;
+            if ($request->hasFile('img_grafico')) {
+                $opcional->imagem_grafico = md5(uniqid((string) rand(), true)) . '.' . strtolower($request->file('img_grafico')->extension());
+            }
+
             $response = $opcional->save();
             $response = $opcional_idioma->save();
 
             if ($response) {
+                if ($request->hasFile('img_grafico')) {
+                    $request->file('img_grafico')->move(public_path('content/optionals/graphics/'), $opcional->imagem_grafico);
+
+                    if ($imagemGraficoOriginal && File::exists(public_path('content/optionals/graphics/' . $imagemGraficoOriginal))) {
+                        File::delete(public_path('content/optionals/graphics/' . $imagemGraficoOriginal));
+                    }
+                }
+
                 return to_route('Manager.Opcionais.index')->with('message', ['type' => 'success', 'msg' => 'Registro salvo com sucesso!']);
             }
         }

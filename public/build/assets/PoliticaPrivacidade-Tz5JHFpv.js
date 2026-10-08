@@ -1,0 +1,1 @@
+import{J as t,j as o}from"./app-DvgPG5Qz.js";import{H as s,F as e}from"./header-CXAAE5rb.js";import{P as m}from"./PrivacyPolicy-BNJbRhVB.js";import"./useLang-rj3qStLb.js";import"./index-Blyy6Qj5.js";import"./index-xdTZeqZC.js";const j=()=>{const{conteudos:r}=t().props;return o.jsxs(o.Fragment,{children:[o.jsx(s,{}),o.jsx(m,{content:r[0]}),o.jsx(e,{})]})};export{j as default};
